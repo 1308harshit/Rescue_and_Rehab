@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useCity } from '@/context/CityContext'
 import { Calendar, MapPin, Clock, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 
 interface Event {
   id: number
@@ -87,7 +88,7 @@ export default function EventsPage() {
           </h1>
           <p className="text-xl text-red-100 max-w-3xl mx-auto">
             Join us in our mission to help animals in need. From adoption drives to 
-            awareness campaigns, there's always something happening at Rescue and Rehab Foundation.
+            awareness campaigns, there&apos;s always something happening at Rescue and Rehab Foundation.
           </p>
         </div>
       </section>
@@ -158,10 +159,11 @@ export default function EventsPage() {
                   <div key={event.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                     {event.imageURL && (
                       <div className="h-48 bg-gray-200">
-                        <img
+                        <Image
                           src={event.imageURL}
                           alt={event.name}
-                          className="w-full h-full object-cover"
+                          fill
+                          className="object-cover"
                         />
                       </div>
                     )}
@@ -290,7 +292,7 @@ export default function EventsPage() {
             Want to Organize an Event?
           </h2>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Have an idea for an event that could help animals? We'd love to hear from you 
+            Have an idea for an event that could help animals? We&apos;d love to hear from you 
             and explore collaboration opportunities.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

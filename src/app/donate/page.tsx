@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Heart, CreditCard, Shield, Users, DollarSign } from 'lucide-react'
+import Image from 'next/image'
 
 export default function DonatePage() {
   const [donationAmount, setDonationAmount] = useState('')
@@ -63,7 +64,7 @@ export default function DonatePage() {
           theme: {
             color: '#0d9488', // Teal color
           },
-          handler: async function (response: any) {
+          handler: async function (response: { razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string }) {
             try {
               // Verify payment
               const verifyResponse = await fetch('/api/payment/verify', {
@@ -103,7 +104,7 @@ export default function DonatePage() {
           }
         }
 
-        const rzp = new (window as any).Razorpay(options)
+        const rzp = new (window as { Razorpay: new (options: Record<string, unknown>) => { open: () => void } }).Razorpay(options)
         rzp.open()
       }
       script.onerror = () => {
@@ -354,7 +355,7 @@ export default function DonatePage() {
               Other Ways to Help
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Donations aren't the only way to support our mission
+              Donations aren&apos;t the only way to support our mission
             </p>
           </div>
 
@@ -401,9 +402,11 @@ export default function DonatePage() {
                   className="bg-teal-600 hover:bg-teal-700 text-white p-3 rounded-full transition-colors"
                   title="Follow us on Instagram"
                 >
-                  <img 
+                  <Image 
                     src="/images/social/instagram.png" 
                     alt="Instagram" 
+                    width={24}
+                    height={24}
                     className="h-6 w-6"
                   />
                 </a>
@@ -414,9 +417,11 @@ export default function DonatePage() {
                   className="bg-teal-600 hover:bg-teal-700 text-white p-3 rounded-full transition-colors"
                   title="Follow us on Facebook"
                 >
-                  <img 
+                  <Image 
                     src="/images/social/facebook.png" 
                     alt="Facebook" 
+                    width={24}
+                    height={24}
                     className="h-6 w-6"
                   />
                 </a>

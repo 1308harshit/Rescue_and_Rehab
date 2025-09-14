@@ -7,7 +7,11 @@ import Link from 'next/link'
 
 export default function DonationSuccessPage() {
   const searchParams = useSearchParams()
-  const [donationDetails, setDonationDetails] = useState<any>(null)
+  const [donationDetails, setDonationDetails] = useState<{
+    amount: string | null;
+    donorName: string | null;
+    paymentId: string | null;
+  } | null>(null)
 
   useEffect(() => {
     // Get donation details from URL params or localStorage
