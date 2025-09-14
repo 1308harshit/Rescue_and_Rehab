@@ -88,7 +88,7 @@ export default function EventsPreview({ events }: EventsPreviewProps) {
                   </div>
                   
                   <Link
-                    href={`/events#event-${event.id}`}
+                    href={`/events/${event.id}`}
                     className="inline-flex items-center text-red-600 hover:text-red-700 font-medium"
                   >
                     Learn More

@@ -81,10 +81,45 @@ model Event {
   date            DateTime
   imageURL        String?
   location        String
+  eventType       EventType @default(GENERAL)
+  article         String? // Event report/article written by admin
   cityId          Int
   city            City     @relation(fields: [cityId], references: [id], onDelete: Cascade)
+  gallery         EventGallery[]
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
+}
+
+// Event gallery for photos and videos
+model EventGallery {
+  id              Int      @id @default(autoincrement())
+  eventId         Int
+  event           Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  mediaType       MediaType
+  url             String
+  caption         String?
+  altText         String?
+  isFeatured      Boolean @default(false)
+  uploadedAt      DateTime @default(now())
+  order           Int @default(0) // For ordering gallery items
+}
+
+// Event types
+enum EventType {
+  ADOPTION_DRIVE
+  HEALTH_CAMP
+  AWARENESS_CAMPAIGN
+  FUNDRAISING
+  VOLUNTEER_TRAINING
+  COMMUNITY_OUTREACH
+  ENVIRONMENTAL
+  GENERAL
+}
+
+// Media types for gallery
+enum MediaType {
+  IMAGE
+  VIDEO
 }
 
 // Represents a volunteer application submitted through the website.

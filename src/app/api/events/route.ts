@@ -38,3 +38,46 @@ export async function GET(request: NextRequest) {
     )
   }
 }
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json()
+    const { name, description, date, location, eventType, cityId, imageURL } = body
+
+    // Validate required fields
+    if (!name || !description || !date || !location || !eventType || !cityId) {
+      return NextResponse.json(
+        { error: 'Missing required fields' },
+        { status: 400 }
+      )
+    }
+
+    const event = await prisma.event.create({
+      data: {
+        name,
+        description,
+        date: new Date(date),
+        location,
+        eventType,
+        cityId: parseInt(cityId),
+        imageURL: imageURL || null,
+      },
+      include: {
+        city: {
+          select: {
+            name: true,
+            state: true
+          }
+        }
+      }
+    })
+
+    return NextResponse.json(event, { status: 201 })
+  } catch (error) {
+    console.error('Error creating event:', error)
+    return NextResponse.json(
+      { error: 'Failed to create event' },
+      { status: 500 }
+    )
+  }
+}

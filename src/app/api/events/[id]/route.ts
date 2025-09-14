@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
-export async function DELETE(
+export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const eventId = parseInt(params.id)
+    const { id } = await params
+    const eventId = parseInt(id)
 
     if (isNaN(eventId)) {
       return NextResponse.json(
@@ -15,9 +16,21 @@ export async function DELETE(
       )
     }
 
-    // Check if event exists
     const event = await prisma.event.findUnique({
-      where: { id: eventId }
+      where: { id: eventId },
+      include: {
+        city: {
+          select: {
+            name: true,
+            state: true
+          }
+        },
+        gallery: {
+          orderBy: {
+            order: 'asc'
+          }
+        },
+      }
     })
 
     if (!event) {
@@ -27,19 +40,11 @@ export async function DELETE(
       )
     }
 
-    // Delete the event
-    await prisma.event.delete({
-      where: { id: eventId }
-    })
-
-    return NextResponse.json(
-      { message: 'Event deleted successfully' },
-      { status: 200 }
-    )
+    return NextResponse.json(event)
   } catch (error) {
-    console.error('Error deleting event:', error)
+    console.error('Error fetching event:', error)
     return NextResponse.json(
-      { error: 'Failed to delete event' },
+      { error: 'Failed to fetch event' },
       { status: 500 }
     )
   }
@@ -47,10 +52,11 @@ export async function DELETE(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const eventId = parseInt(params.id)
+    const { id } = await params
+    const eventId = parseInt(id)
     const body = await request.json()
 
     if (isNaN(eventId)) {
@@ -60,31 +66,31 @@ export async function PUT(
       )
     }
 
-    // Check if event exists
-    const event = await prisma.event.findUnique({
-      where: { id: eventId }
-    })
-
-    if (!event) {
-      return NextResponse.json(
-        { error: 'Event not found' },
-        { status: 404 }
-      )
-    }
-
-    // Update the event
     const updatedEvent = await prisma.event.update({
       where: { id: eventId },
       data: {
         name: body.name,
         description: body.description,
-        date: new Date(body.date),
-        location: body.location,
+        date: body.date ? new Date(body.date) : undefined,
         imageURL: body.imageURL,
+        location: body.location,
+        eventType: body.eventType,
+        article: body.article,
+        cityId: body.cityId
       },
       include: {
-        city: true,
-      },
+        city: {
+          select: {
+            name: true,
+            state: true
+          }
+        },
+        gallery: {
+          orderBy: {
+            order: 'asc'
+          }
+        }
+      }
     })
 
     return NextResponse.json(updatedEvent)
@@ -92,6 +98,35 @@ export async function PUT(
     console.error('Error updating event:', error)
     return NextResponse.json(
       { error: 'Failed to update event' },
+      { status: 500 }
+    )
+  }
+}
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params
+    const eventId = parseInt(id)
+
+    if (isNaN(eventId)) {
+      return NextResponse.json(
+        { error: 'Invalid event ID' },
+        { status: 400 }
+      )
+    }
+
+    await prisma.event.delete({
+      where: { id: eventId }
+    })
+
+    return NextResponse.json({ message: 'Event deleted successfully' })
+  } catch (error) {
+    console.error('Error deleting event:', error)
+    return NextResponse.json(
+      { error: 'Failed to delete event' },
       { status: 500 }
     )
   }

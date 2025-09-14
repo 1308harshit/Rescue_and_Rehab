@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Heart, Users, DollarSign } from 'lucide-react'
+import { Heart, Users, Banknote } from 'lucide-react'
 
 export default function CallToAction() {
   return (
@@ -17,7 +17,7 @@ export default function CallToAction() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6">
-              <DollarSign className="h-12 w-12 text-orange-300 mx-auto mb-4" />
+              <Banknote className="h-12 w-12 text-orange-300 mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-3 text-gray-800">Donate</h3>
               <p className="text-gray-700 mb-4">
                 Support our rescue operations, medical care, and daily needs

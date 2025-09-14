@@ -37,6 +37,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true)
   const [editingAnimal, setEditingAnimal] = useState<Animal | null>(null)
   const [editingEvent, setEditingEvent] = useState<Event | null>(null)
+  const [animalFilter, setAnimalFilter] = useState<'ALL' | 'DOG' | 'COW' | 'BIRD'>('ALL')
 
   useEffect(() => {
     fetchData()
@@ -148,7 +149,7 @@ export default function AdminPage() {
         {activeTab === 'animals' && (
           <div className="bg-white rounded-lg shadow-lg">
             <div className="p-6 border-b">
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl font-bold text-gray-800">Animals</h2>
                 <a 
                   href="/admin/add-animal"
@@ -157,6 +158,50 @@ export default function AdminPage() {
                   <Plus className="h-4 w-4 mr-2" />
                   Add Animal
                 </a>
+              </div>
+              
+              {/* Animal Filter */}
+              <div className="flex space-x-2">
+                <button
+                  onClick={() => setAnimalFilter('ALL')}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                    animalFilter === 'ALL' 
+                      ? 'bg-teal-600 text-white' 
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  All Animals
+                </button>
+                <button
+                  onClick={() => setAnimalFilter('DOG')}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                    animalFilter === 'DOG' 
+                      ? 'bg-teal-600 text-white' 
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  Dogs
+                </button>
+                <button
+                  onClick={() => setAnimalFilter('COW')}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                    animalFilter === 'COW' 
+                      ? 'bg-teal-600 text-white' 
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  Cows
+                </button>
+                <button
+                  onClick={() => setAnimalFilter('BIRD')}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                    animalFilter === 'BIRD' 
+                      ? 'bg-teal-600 text-white' 
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  Birds
+                </button>
               </div>
             </div>
             
@@ -173,7 +218,9 @@ export default function AdminPage() {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {animals.map((animal) => (
+                  {animals
+                    .filter(animal => animalFilter === 'ALL' || animal.type === animalFilter)
+                    .map((animal) => (
                     <tr key={animal.id}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
@@ -243,10 +290,13 @@ export default function AdminPage() {
             <div className="p-6 border-b">
               <div className="flex justify-between items-center">
                 <h2 className="text-2xl font-bold text-gray-800">Events</h2>
-                <button className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg inline-flex items-center">
+                <a 
+                  href="/admin/add-event"
+                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg inline-flex items-center"
+                >
                   <Plus className="h-4 w-4 mr-2" />
                   Add Event
-                </button>
+                </a>
               </div>
             </div>
             
@@ -281,18 +331,33 @@ export default function AdminPage() {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <div className="flex space-x-2">
-                          <button className="text-blue-600 hover:text-blue-900">
+                          <a
+                            href={`/events/${event.id}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-600 hover:text-blue-900"
+                            title="View Event"
+                          >
                             <Eye className="h-4 w-4" />
-                          </button>
-                          <button 
-                            onClick={() => setEditingEvent(event)}
-                            className="text-yellow-600 hover:text-yellow-900"
+                          </a>
+                          <a
+                            href={`/admin/events/${event.id}/article`}
+                            className="text-green-600 hover:text-green-900"
+                            title="Edit Article"
                           >
                             <Edit className="h-4 w-4" />
-                          </button>
+                          </a>
+                          <a
+                            href={`/admin/events/${event.id}/gallery`}
+                            className="text-purple-600 hover:text-purple-900"
+                            title="Manage Gallery"
+                          >
+                            <Plus className="h-4 w-4" />
+                          </a>
                           <button 
                             onClick={() => handleDeleteEvent(event.id)}
-                            className="text-teal-600 hover:text-teal-900"
+                            className="text-red-600 hover:text-red-900"
+                            title="Delete Event"
                           >
                             <Trash2 className="h-4 w-4" />
                           </button>

@@ -89,7 +89,7 @@ export default function AddAnimalPage() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-2">
                     Name *
                   </label>
                   <input
@@ -97,19 +97,19 @@ export default function AddAnimalPage() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent placeholder-gray-900"
                     placeholder="Animal's name"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-2">
                     Type *
                   </label>
                   <select
                     value={formData.type}
                     onChange={(e) => setFormData({ ...formData, type: e.target.value as 'DOG' | 'COW' | 'BIRD' })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent text-gray-900"
                   >
                     <option value="DOG">Dog</option>
                     <option value="COW">Cow</option>
@@ -118,7 +118,7 @@ export default function AddAnimalPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-2">
                     Age (years)
                   </label>
                   <input
@@ -127,19 +127,19 @@ export default function AddAnimalPage() {
                     max="30"
                     value={formData.age}
                     onChange={(e) => setFormData({ ...formData, age: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent placeholder-gray-900"
                     placeholder="Age in years"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-2">
                     Status
                   </label>
                   <select
                     value={formData.isAvailable ? 'available' : 'adopted'}
                     onChange={(e) => setFormData({ ...formData, isAvailable: e.target.value === 'available' })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent text-gray-900"
                   >
                     <option value="available">Available for Adoption</option>
                     <option value="adopted">Already Adopted</option>
@@ -156,7 +156,7 @@ export default function AddAnimalPage() {
                   rows={4}
                   value={formData.story}
                   onChange={(e) => setFormData({ ...formData, story: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent placeholder-gray-900"
                   placeholder="Tell the animal's rescue story..."
                 />
               </div>
@@ -176,7 +176,7 @@ export default function AddAnimalPage() {
               {/* Display uploaded images */}
               {formData.imageURL.length > 0 && (
                 <div className="mt-4">
-                  <h3 className="text-sm font-medium text-gray-700 mb-2">Uploaded Images:</h3>
+                  <h3 className="text-sm font-medium text-gray-900 mb-2">Uploaded Images:</h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {formData.imageURL.map((url, index) => (
                       <div key={index} className="relative">
@@ -204,7 +204,7 @@ export default function AddAnimalPage() {
               <button
                 type="button"
                 onClick={() => router.back()}
-                className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+                className="px-6 py-3 border border-gray-300 text-gray-900 rounded-lg hover:bg-gray-50"
               >
                 Cancel
               </button>

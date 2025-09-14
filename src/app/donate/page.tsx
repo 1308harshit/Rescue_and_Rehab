@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Heart, CreditCard, Shield, Users, DollarSign } from 'lucide-react'
+import { Heart, CreditCard, Shield, Users, Banknote } from 'lucide-react'
 import Image from 'next/image'
 
 export default function DonatePage() {
@@ -176,7 +176,7 @@ export default function DonatePage() {
             
             <div className="text-center p-6 bg-gray-50 rounded-lg">
               <div className="bg-red-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <DollarSign className="h-8 w-8 text-red-600" />
+                <Banknote className="h-8 w-8 text-red-600" />
               </div>
               <h3 className="text-lg font-semibold text-gray-800 mb-2">Shelter Operations</h3>
               <p className="text-gray-600">₹5,000 supports shelter maintenance for one month</p>

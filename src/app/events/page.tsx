@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useCity } from '@/context/CityContext'
 import { Calendar, MapPin, Clock, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 interface Event {
   id: number
@@ -208,10 +209,13 @@ export default function EventsPage() {
                         </div>
                       </div>
                       
-                      <button className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition-colors inline-flex items-center justify-center">
+                      <Link 
+                        href={`/events/${event.id}`}
+                        className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition-colors inline-flex items-center justify-center"
+                      >
                         Learn More
                         <ArrowRight className="h-4 w-4 ml-2" />
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 ))}
