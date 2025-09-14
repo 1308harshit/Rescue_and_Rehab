@@ -1,8 +1,7 @@
-import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { NextRequest } from 'next/server'
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production'
+const JWT_SECRET = process.env.JWT_SECRET || 'rescue-and-rehab-admin-secret-key-2024-secure'
 const JWT_EXPIRES_IN = '7d'
 
 export interface AdminUser {
@@ -10,14 +9,6 @@ export interface AdminUser {
   username: string
   email: string
   isActive: boolean
-}
-
-export async function hashPassword(password: string): Promise<string> {
-  return bcrypt.hash(password, 12)
-}
-
-export async function verifyPassword(password: string, hashedPassword: string): Promise<boolean> {
-  return bcrypt.compare(password, hashedPassword)
 }
 
 export function generateToken(admin: AdminUser): string {
@@ -55,6 +46,7 @@ export function getTokenFromRequest(request: NextRequest): string | null {
 
   // Try to get token from cookies
   const token = request.cookies.get('admin-token')?.value
+  console.log('Token from request:', token ? 'found' : 'not found')
   return token || null
 }
 

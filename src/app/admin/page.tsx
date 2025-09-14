@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Plus, Edit, Trash2, Eye, Save, X } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { Plus, Edit, Trash2, Eye, Save, X, LogOut } from 'lucide-react'
 
 interface Animal {
   id: number
@@ -55,6 +56,7 @@ interface CoreMember {
 }
 
 export default function AdminPage() {
+  const router = useRouter()
   const [animals, setAnimals] = useState<Animal[]>([])
   const [events, setEvents] = useState<Event[]>([])
   const [volunteers, setVolunteers] = useState<Volunteer[]>([])
@@ -204,6 +206,21 @@ export default function AdminPage() {
     }
   }
 
+  const handleLogout = async () => {
+    if (confirm('Are you sure you want to logout?')) {
+      try {
+        await fetch('/api/auth/logout', {
+          method: 'POST'
+        })
+        router.push('/admin/login')
+      } catch (error) {
+        console.error('Logout error:', error)
+        // Still redirect even if logout fails
+        router.push('/admin/login')
+      }
+    }
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -220,8 +237,19 @@ export default function AdminPage() {
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="container mx-auto px-4 py-6">
-          <h1 className="text-3xl font-bold text-gray-800">Admin Panel</h1>
-          <p className="text-gray-600 mt-2">Manage animals, events, and content</p>
+          <div className="flex justify-between items-center">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-800">Admin Panel</h1>
+              <p className="text-gray-600 mt-2">Manage animals, events, and content</p>
+            </div>
+            <button
+              onClick={handleLogout}
+              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg inline-flex items-center"
+            >
+              <LogOut className="h-4 w-4 mr-2" />
+              Logout
+            </button>
+          </div>
         </div>
       </div>
 

@@ -226,7 +226,25 @@ async function main() {
     ]
   })
 
+  // Create default admin user
+  console.log('Creating default admin user...')
+  const bcrypt = require('bcryptjs')
+  const hashedPassword = await bcrypt.hash('admin123', 12)
+  
+  await prisma.admin.create({
+    data: {
+      username: 'admin',
+      email: 'admin@rescueandrehab.org',
+      password: hashedPassword,
+      isActive: true
+    }
+  })
+
   console.log('Database seeded successfully!')
+  console.log('Default admin credentials:')
+  console.log('Username: admin')
+  console.log('Password: admin123')
+  console.log('Email: admin@rescueandrehab.org')
 }
 
 main()
