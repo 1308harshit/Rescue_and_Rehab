@@ -162,3 +162,31 @@ model Donation {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }
+
+// Represents core team members who appear on the homepage
+model CoreMember {
+  id              Int      @id @default(autoincrement())
+  firstName       String
+  lastName        String
+  role            String   // "Main" or "Contributor"
+  bio             String?  // Brief description
+  imageURL        String?  // Profile photo
+  email           String?
+  phone           String?
+  isActive        Boolean  @default(true)
+  displayOrder    Int      @default(0) // For ordering on homepage
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Admin authentication model
+model Admin {
+  id              Int      @id @default(autoincrement())
+  username        String   @unique
+  email           String   @unique
+  password        String   // Hashed password
+  isActive        Boolean  @default(true)
+  lastLogin       DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}

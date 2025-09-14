@@ -2,6 +2,24 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { sendVolunteerNotificationEmail } from '@/lib/email'
 
+export async function GET(request: NextRequest) {
+  try {
+    const volunteers = await prisma.volunteerApplication.findMany({
+      orderBy: {
+        appliedAt: 'desc'
+      }
+    })
+
+    return NextResponse.json(volunteers)
+  } catch (error) {
+    console.error('Error fetching volunteers:', error)
+    return NextResponse.json(
+      { error: 'Failed to fetch volunteers' },
+      { status: 500 }
+    )
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()

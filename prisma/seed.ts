@@ -158,6 +158,74 @@ async function main() {
     }
   }
 
+  // Create Volunteers
+  console.log('Creating volunteers...')
+  await prisma.volunteerApplication.createMany({
+    data: [
+      {
+        firstName: 'Priya',
+        lastName: 'Sharma',
+        email: 'priya.sharma@rescueandrehab.org',
+        phone: '+91-9876543211',
+        city: 'Navsari',
+        message: 'I am a veterinary specialist with 5+ years of experience. I would like to contribute to animal welfare and rescue operations.'
+      },
+      {
+        firstName: 'Rajesh',
+        lastName: 'Patel',
+        email: 'rajesh.patel@rescueandrehab.org',
+        phone: '+91-9876543212',
+        city: 'Navsari',
+        message: 'I am passionate about community outreach and spreading awareness about animal welfare. I have experience in organizing events and community programs.'
+      },
+      {
+        firstName: 'Anita',
+        lastName: 'Desai',
+        email: 'anita.desai@rescueandrehab.org',
+        phone: '+91-9876543213',
+        city: 'Navsari',
+        message: 'I am a social worker with experience in animal rescue. I would like to help with adoption processes and animal care.'
+      }
+    ]
+  })
+
+  // Create Core Members
+  console.log('Creating core members...')
+  await prisma.coreMember.createMany({
+    data: [
+      {
+        firstName: 'Harshit',
+        lastName: 'Khatsuriya',
+        role: 'Main',
+        bio: 'Founder and Director of Rescue and Rehab Foundation. Passionate about animal welfare and community service.',
+        email: 'khatsuriyaharshit@gmail.com',
+        phone: '+91-9876543210',
+        isActive: true,
+        displayOrder: 1
+      },
+      {
+        firstName: 'Priya',
+        lastName: 'Sharma',
+        role: 'Contributor',
+        bio: 'Veterinary specialist with 5+ years of experience in animal care and rescue operations.',
+        email: 'priya.sharma@rescueandrehab.org',
+        phone: '+91-9876543211',
+        isActive: true,
+        displayOrder: 2
+      },
+      {
+        firstName: 'Rajesh',
+        lastName: 'Patel',
+        role: 'Contributor',
+        bio: 'Community outreach coordinator dedicated to spreading awareness about animal welfare.',
+        email: 'rajesh.patel@rescueandrehab.org',
+        phone: '+91-9876543212',
+        isActive: true,
+        displayOrder: 3
+      }
+    ]
+  })
+
   console.log('Database seeded successfully!')
 }
 
