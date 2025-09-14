@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { sendVolunteerNotificationEmail } from '@/lib/email'
 
 export async function POST(request: NextRequest) {
   try {
@@ -25,6 +26,23 @@ export async function POST(request: NextRequest) {
         message: message || null,
       },
     })
+
+    // Send email notification
+    const emailData = {
+      firstName,
+      lastName,
+      email,
+      phone: phone || undefined,
+      city,
+      message: message || undefined,
+    }
+
+    try {
+      await sendVolunteerNotificationEmail(emailData)
+    } catch (emailError) {
+      console.error('Error sending volunteer notification email:', emailError)
+      // Don't fail the request if email fails, just log the error
+    }
 
     return NextResponse.json(
       { message: 'Volunteer application submitted successfully', id: volunteerApplication.id },

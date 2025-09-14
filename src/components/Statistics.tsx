@@ -31,7 +31,7 @@ export default function Statistics({ totalAnimals, totalCities }: StatisticsProp
           
           <div className="bg-white p-8 rounded-lg shadow-lg text-center">
             <div className="text-4xl font-bold text-red-600 mb-2">
-              {totalCities}
+              {totalCities}+
             </div>
             <h3 className="text-lg font-semibold text-gray-800 mb-2">
               Cities Served

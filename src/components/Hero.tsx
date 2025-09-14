@@ -50,14 +50,14 @@ export default function Hero() {
               <div className="bg-red-100 p-4 rounded-full mb-4">
                 <Users className="h-8 w-8 text-red-600" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">200+</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-2">100+</h3>
               <p className="text-gray-600">Happy Adoptions</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="bg-red-100 p-4 rounded-full mb-4">
                 <Calendar className="h-8 w-8 text-red-600" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">50+</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-2">70+</h3>
               <p className="text-gray-600">Events Organized</p>
             </div>
           </div>

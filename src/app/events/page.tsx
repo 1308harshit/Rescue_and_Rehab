@@ -158,7 +158,7 @@ export default function EventsPage() {
                 {events.map((event) => (
                   <div key={event.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                     {event.imageURL && (
-                      <div className="h-48 bg-gray-200">
+                      <div className="h-48 bg-gray-200 relative">
                         <Image
                           src={event.imageURL}
                           alt={event.name}
