@@ -114,7 +114,10 @@ async function main() {
   const createdEvents = []
   for (const event of events) {
     const createdEvent = await prisma.event.create({
-      data: event,
+      data: {
+        ...event,
+        eventType: event.eventType as any
+      },
     })
     createdEvents.push(createdEvent)
   }
@@ -153,7 +156,10 @@ async function main() {
 
     for (const item of galleryItems) {
       await prisma.eventGallery.create({
-        data: item,
+        data: {
+          ...item,
+          mediaType: item.mediaType as any
+        },
       })
     }
   }

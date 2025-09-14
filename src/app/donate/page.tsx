@@ -104,7 +104,7 @@ export default function DonatePage() {
           }
         }
 
-        const rzp = new (window as { Razorpay: new (options: Record<string, unknown>) => { open: () => void } }).Razorpay(options)
+        const rzp = new (window as any).Razorpay(options)
         rzp.open()
       }
       script.onerror = () => {

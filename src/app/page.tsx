@@ -52,7 +52,10 @@ export default async function HomePage() {
         totalAnimals={totalAnimals}
         totalCities={totalCities}
       />
-      <EventsPreview events={upcomingEvents} />
+      <EventsPreview events={upcomingEvents.map(event => ({
+        ...event,
+        date: event.date.toISOString()
+      }))} />
       <CallToAction />
     </div>
   )
