@@ -1,0 +1,129 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Represents a city where the NGO has a presence.
+// This is the core of the multi-city architecture.
+model City {
+  id              Int      @id @default(autoincrement())
+  name            String   @unique
+  state           String
+  country         String
+  events          Event[]
+  shelters        Shelter[]
+  contactInfo     ContactInfo?
+  volunteerApplications VolunteerApplication[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Stores contact information specific to each city.
+model ContactInfo {
+  id              Int      @id @default(autoincrement())
+  phoneNumbers    String[] // Stores an array of phone numbers.
+  email           String?
+  address         String?
+  cityId          Int      @unique
+  city            City     @relation(fields: [cityId], references: [id], onDelete: Cascade)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Represents an animal shelter or branch in a specific city.
+model Shelter {
+  id              Int      @id @default(autoincrement())
+  name            String
+  address         String
+  registrationNo  String
+  cityId          Int
+  city            City     @relation(fields: [cityId], references: [id], onDelete: Cascade)
+  animals         Animal[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Represents an animal rescued by the NGO.
+model Animal {
+  id              Int      @id @default(autoincrement())
+  name            String
+  type            AnimalType
+  age             Int?
+  story           String
+  isAdopted       Boolean  @default(false)
+  isAvailable     Boolean  @default(true)
+  imageURL        String[] // Stores an array of image URLs for the animal.
+  shelterId       Int
+  shelter         Shelter  @relation(fields: [shelterId], references: [id], onDelete: Cascade)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Enum to categorize animals.
+enum AnimalType {
+  DOG
+  COW
+  BIRD
+}
+
+// Represents an event hosted by the NGO.
+model Event {
+  id              Int      @id @default(autoincrement())
+  name            String
+  description     String
+  date            DateTime
+  imageURL        String?
+  location        String
+  cityId          Int
+  city            City     @relation(fields: [cityId], references: [id], onDelete: Cascade)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Represents a volunteer application submitted through the website.
+model VolunteerApplication {
+  id              Int      @id @default(autoincrement())
+  firstName       String
+  lastName        String
+  email           String
+  phone           String?
+  message         String?
+  city            String   // Stored as a string to allow for future flexibility.
+  cityId          Int?
+  cityRelation    City?    @relation(fields: [cityId], references: [id])
+  appliedAt       DateTime @default(now())
+}
+
+// Represents a contact form submission.
+model ContactSubmission {
+  id              Int      @id @default(autoincrement())
+  name            String
+  email           String
+  phone           String?
+  subject         String
+  message         String
+  submittedAt     DateTime @default(now())
+}
+
+// Represents a donation record.
+model Donation {
+  id              Int      @id @default(autoincrement())
+  amount          Float
+  donorName       String?
+  donorEmail      String?
+  donorPhone      String?
+  paymentId       String?  // Payment gateway transaction ID
+  orderId         String?  // Razorpay order ID
+  status          String   @default("pending") // pending, completed, failed
+  donationType    String   @default("one-time") // one-time, monthly
+  purpose         String?  // Purpose of donation
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
