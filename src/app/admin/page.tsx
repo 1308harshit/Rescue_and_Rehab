@@ -236,15 +236,15 @@ export default function AdminPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex justify-between items-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">Admin Panel</h1>
-              <p className="text-gray-600 mt-2">Manage animals, events, and content</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Admin Panel</h1>
+              <p className="text-gray-600 mt-1 sm:mt-2 text-sm sm:text-base">Manage animals, events, and content</p>
             </div>
             <button
               onClick={handleLogout}
-              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg inline-flex items-center"
+              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg inline-flex items-center justify-center w-full sm:w-auto"
             >
               <LogOut className="h-4 w-4 mr-2" />
               Logout
@@ -253,12 +253,12 @@ export default function AdminPage() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Tab Navigation */}
-        <div className="flex mb-8">
+        <div className="flex flex-col sm:flex-row mb-6 sm:mb-8 space-y-2 sm:space-y-0 sm:space-x-0">
           <button
             onClick={() => setActiveTab('animals')}
-            className={`px-6 py-3 font-medium transition-colors ${
+            className={`px-4 sm:px-6 py-3 font-medium transition-colors text-sm sm:text-base ${
               activeTab === 'animals'
                 ? 'bg-teal-600 text-white'
                 : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
@@ -268,7 +268,7 @@ export default function AdminPage() {
           </button>
           <button
             onClick={() => setActiveTab('events')}
-            className={`px-6 py-3 font-medium transition-colors ${
+            className={`px-4 sm:px-6 py-3 font-medium transition-colors text-sm sm:text-base ${
               activeTab === 'events'
                 ? 'bg-teal-600 text-white'
                 : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
@@ -278,7 +278,7 @@ export default function AdminPage() {
           </button>
           <button
             onClick={() => setActiveTab('volunteers')}
-            className={`px-6 py-3 font-medium transition-colors ${
+            className={`px-4 sm:px-6 py-3 font-medium transition-colors text-sm sm:text-base ${
               activeTab === 'volunteers'
                 ? 'bg-teal-600 text-white'
                 : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
@@ -288,7 +288,7 @@ export default function AdminPage() {
           </button>
           <button
             onClick={() => setActiveTab('core-members')}
-            className={`px-6 py-3 font-medium transition-colors ${
+            className={`px-4 sm:px-6 py-3 font-medium transition-colors text-sm sm:text-base ${
               activeTab === 'core-members'
                 ? 'bg-teal-600 text-white'
                 : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
@@ -301,12 +301,12 @@ export default function AdminPage() {
         {/* Animals Tab */}
         {activeTab === 'animals' && (
           <div className="bg-white rounded-lg shadow-lg">
-            <div className="p-6 border-b">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold text-gray-800">Animals</h2>
+            <div className="p-4 sm:p-6 border-b">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 space-y-4 sm:space-y-0">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Animals</h2>
                 <a 
                   href="/admin/add-animal"
-                  className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg inline-flex items-center"
+                  className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg inline-flex items-center justify-center w-full sm:w-auto"
                 >
                   <Plus className="h-4 w-4 mr-2" />
                   Add Animal
@@ -314,10 +314,10 @@ export default function AdminPage() {
               </div>
               
               {/* Animal Filter */}
-              <div className="flex space-x-2">
+              <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => setAnimalFilter('ALL')}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                  className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium ${
                     animalFilter === 'ALL' 
                       ? 'bg-teal-600 text-white' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -327,7 +327,7 @@ export default function AdminPage() {
                 </button>
                 <button
                   onClick={() => setAnimalFilter('DOG')}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                  className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium ${
                     animalFilter === 'DOG' 
                       ? 'bg-teal-600 text-white' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -337,7 +337,7 @@ export default function AdminPage() {
                 </button>
                 <button
                   onClick={() => setAnimalFilter('COW')}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                  className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium ${
                     animalFilter === 'COW' 
                       ? 'bg-teal-600 text-white' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -347,7 +347,7 @@ export default function AdminPage() {
                 </button>
                 <button
                   onClick={() => setAnimalFilter('BIRD')}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                  className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium ${
                     animalFilter === 'BIRD' 
                       ? 'bg-teal-600 text-white' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -359,15 +359,15 @@ export default function AdminPage() {
             </div>
             
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full min-w-[600px]">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Animal</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Age</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Animal</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">Type</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">Age</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">Location</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -375,33 +375,36 @@ export default function AdminPage() {
                     .filter(animal => animalFilter === 'ALL' || animal.type === animalFilter)
                     .map((animal) => (
                     <tr key={animal.id}>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-4">
                         <div className="flex items-center">
-                          <div className="h-10 w-10 bg-gray-200 rounded-full flex items-center justify-center mr-3">
+                          <div className="h-8 w-8 sm:h-10 sm:w-10 bg-gray-200 rounded-full flex items-center justify-center mr-2 sm:mr-3 flex-shrink-0">
                             {animal.imageURL.length > 0 ? (
-                              <img src={animal.imageURL[0]} alt={animal.name} className="h-10 w-10 rounded-full object-cover" />
+                              <img src={animal.imageURL[0]} alt={animal.name} className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover" />
                             ) : (
-                              <span className="text-gray-400">🐾</span>
+                              <span className="text-gray-400 text-xs sm:text-sm">🐾</span>
                             )}
                           </div>
-                          <div>
-                            <div className="text-sm font-medium text-gray-900">{animal.name}</div>
-                            <div className="text-sm text-gray-500">{animal.shelter.name}</div>
+                          <div className="min-w-0 flex-1">
+                            <div className="text-sm font-medium text-gray-900 truncate">{animal.name}</div>
+                            <div className="text-xs sm:text-sm text-gray-500 truncate">{animal.shelter.name}</div>
+                            <div className="text-xs text-gray-400 sm:hidden">
+                              {animal.type} • {animal.age ? `${animal.age}y` : 'Unknown'} • {animal.shelter.city.name}
+                            </div>
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap hidden sm:table-cell">
                         <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                           {animal.type}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900 hidden md:table-cell">
                         {animal.age ? `${animal.age} years` : 'Unknown'}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900 hidden lg:table-cell">
                         {animal.shelter.city.name}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                         <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                           animal.isAvailable 
                             ? 'bg-green-100 text-green-800' 
@@ -410,22 +413,22 @@ export default function AdminPage() {
                           {animal.isAvailable ? 'Available' : 'Adopted'}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <div className="flex space-x-2">
-                          <button className="text-blue-600 hover:text-blue-900">
-                            <Eye className="h-4 w-4" />
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <div className="flex space-x-1 sm:space-x-2">
+                          <button className="text-blue-600 hover:text-blue-900 p-1">
+                            <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
                           </button>
                           <button 
                             onClick={() => setEditingAnimal(animal)}
-                            className="text-yellow-600 hover:text-yellow-900"
+                            className="text-yellow-600 hover:text-yellow-900 p-1"
                           >
-                            <Edit className="h-4 w-4" />
+                            <Edit className="h-3 w-3 sm:h-4 sm:w-4" />
                           </button>
                           <button 
                             onClick={() => handleDeleteAnimal(animal.id)}
-                            className="text-teal-600 hover:text-teal-900"
+                            className="text-teal-600 hover:text-teal-900 p-1"
                           >
-                            <Trash2 className="h-4 w-4" />
+                            <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                           </button>
                         </div>
                       </td>
@@ -440,12 +443,12 @@ export default function AdminPage() {
         {/* Events Tab */}
         {activeTab === 'events' && (
           <div className="bg-white rounded-lg shadow-lg">
-            <div className="p-6 border-b">
-              <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-bold text-gray-800">Events</h2>
+            <div className="p-4 sm:p-6 border-b">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Events</h2>
                 <a 
                   href="/admin/add-event"
-                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg inline-flex items-center"
+                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg inline-flex items-center justify-center w-full sm:w-auto"
                 >
                   <Plus className="h-4 w-4 mr-2" />
                   Add Event
@@ -454,65 +457,68 @@ export default function AdminPage() {
             </div>
             
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full min-w-[600px]">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">City</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">Date</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">Location</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">City</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {events.map((event) => (
                     <tr key={event.id}>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div>
-                          <div className="text-sm font-medium text-gray-900">{event.name}</div>
-                          <div className="text-sm text-gray-500 line-clamp-2">{event.description}</div>
+                      <td className="px-3 sm:px-6 py-4">
+                        <div className="min-w-0 flex-1">
+                          <div className="text-sm font-medium text-gray-900 truncate">{event.name}</div>
+                          <div className="text-xs sm:text-sm text-gray-500 line-clamp-2">{event.description}</div>
+                          <div className="text-xs text-gray-400 sm:hidden mt-1">
+                            {new Date(event.date).toLocaleDateString('en-IN')} • {event.location} • {event.city.name}
+                          </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900 hidden sm:table-cell">
                         {new Date(event.date).toLocaleDateString('en-IN')}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900 hidden md:table-cell">
                         {event.location}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900 hidden lg:table-cell">
                         {event.city.name}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <div className="flex space-x-2">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <div className="flex space-x-1 sm:space-x-2">
                           <a
                             href={`/events/${event.id}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-900"
+                            className="text-blue-600 hover:text-blue-900 p-1"
                             title="View Event"
                           >
-                            <Eye className="h-4 w-4" />
+                            <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
                           </a>
                           <a
                             href={`/admin/events/${event.id}/article`}
-                            className="text-green-600 hover:text-green-900"
+                            className="text-green-600 hover:text-green-900 p-1"
                             title="Edit Article"
                           >
-                            <Edit className="h-4 w-4" />
+                            <Edit className="h-3 w-3 sm:h-4 sm:w-4" />
                           </a>
                           <a
                             href={`/admin/events/${event.id}/gallery`}
-                            className="text-purple-600 hover:text-purple-900"
+                            className="text-purple-600 hover:text-purple-900 p-1"
                             title="Manage Gallery"
                           >
-                            <Plus className="h-4 w-4" />
+                            <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
                           </a>
                           <button 
                             onClick={() => handleDeleteEvent(event.id)}
-                            className="text-red-600 hover:text-red-900"
+                            className="text-red-600 hover:text-red-900 p-1"
                             title="Delete Event"
                           >
-                            <Trash2 className="h-4 w-4" />
+                            <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                           </button>
                         </div>
                       </td>
@@ -527,16 +533,16 @@ export default function AdminPage() {
         {/* Volunteers Tab */}
         {activeTab === 'volunteers' && (
           <div className="bg-white rounded-lg shadow-lg">
-            <div className="p-6 border-b">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold text-gray-800">Volunteers</h2>
+            <div className="p-4 sm:p-6 border-b">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 space-y-4 sm:space-y-0">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Volunteers</h2>
               </div>
               
               {/* Volunteer Filter */}
-              <div className="flex space-x-2">
+              <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => setVolunteerFilter('ALL')}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                  className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium ${
                     volunteerFilter === 'ALL' 
                       ? 'bg-teal-600 text-white' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -546,7 +552,7 @@ export default function AdminPage() {
                 </button>
                 <button
                   onClick={() => setVolunteerFilter('CORE')}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                  className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium ${
                     volunteerFilter === 'CORE' 
                       ? 'bg-teal-600 text-white' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -556,7 +562,7 @@ export default function AdminPage() {
                 </button>
                 <button
                   onClick={() => setVolunteerFilter('REGULAR')}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                  className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium ${
                     volunteerFilter === 'REGULAR' 
                       ? 'bg-teal-600 text-white' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -568,15 +574,15 @@ export default function AdminPage() {
             </div>
             
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full min-w-[600px]">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">City</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Applied</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">Email</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">Phone</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">City</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">Applied</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -599,40 +605,43 @@ export default function AdminPage() {
                     })
                     .map((volunteer) => (
                     <tr key={volunteer.id}>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div>
+                      <td className="px-3 sm:px-6 py-4">
+                        <div className="min-w-0 flex-1">
                           <div className="text-sm font-medium text-gray-900">
                             {volunteer.firstName} {volunteer.lastName}
                           </div>
+                          <div className="text-xs text-gray-400 sm:hidden">
+                            {volunteer.email} • {volunteer.phone || 'N/A'} • {volunteer.city} • {new Date(volunteer.appliedAt).toLocaleDateString('en-IN')}
+                          </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900 hidden sm:table-cell">
                         {volunteer.email}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900 hidden md:table-cell">
                         {volunteer.phone || 'N/A'}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900 hidden lg:table-cell">
                         {volunteer.city}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900 hidden sm:table-cell">
                         {new Date(volunteer.appliedAt).toLocaleDateString('en-IN')}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <div className="flex space-x-2">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <div className="flex space-x-1 sm:space-x-2">
                           <button 
                             onClick={() => handlePromoteToCoreMember(volunteer)}
-                            className="text-green-600 hover:text-green-900"
+                            className="text-green-600 hover:text-green-900 p-1"
                             title="Promote to Core Member"
                           >
-                            <Plus className="h-4 w-4" />
+                            <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
                           </button>
                           <button 
                             onClick={() => handleRemoveVolunteer(volunteer.id)}
-                            className="text-red-600 hover:text-red-900"
+                            className="text-red-600 hover:text-red-900 p-1"
                             title="Remove Volunteer"
                           >
-                            <Trash2 className="h-4 w-4" />
+                            <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                           </button>
                         </div>
                       </td>
@@ -647,12 +656,12 @@ export default function AdminPage() {
         {/* Core Members Tab */}
         {activeTab === 'core-members' && (
           <div className="bg-white rounded-lg shadow-lg">
-            <div className="p-6 border-b">
-              <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-bold text-gray-800">Core Members</h2>
+            <div className="p-4 sm:p-6 border-b">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Core Members</h2>
                 <a 
                   href="/admin/add-core-member"
-                  className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg inline-flex items-center"
+                  className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg inline-flex items-center justify-center w-full sm:w-auto"
                 >
                   <Plus className="h-4 w-4 mr-2" />
                   Add Core Member
@@ -661,52 +670,55 @@ export default function AdminPage() {
             </div>
             
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full min-w-[600px]">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Member</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Member</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">Role</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">Contact</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">Status</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {coreMembers.map((member) => (
                     <tr key={member.id}>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-4">
                         <div className="flex items-center">
-                          <div className="h-10 w-10 bg-gray-200 rounded-full flex items-center justify-center mr-3">
+                          <div className="h-8 w-8 sm:h-10 sm:w-10 bg-gray-200 rounded-full flex items-center justify-center mr-2 sm:mr-3 flex-shrink-0">
                             {member.imageURL ? (
-                              <img src={member.imageURL} alt={`${member.firstName} ${member.lastName}`} className="h-10 w-10 rounded-full object-cover" />
+                              <img src={member.imageURL} alt={`${member.firstName} ${member.lastName}`} className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover" />
                             ) : (
-                              <span className="text-gray-400">
+                              <span className="text-gray-400 text-xs sm:text-sm">
                                 {member.firstName.charAt(0)}{member.lastName.charAt(0)}
                               </span>
                             )}
                           </div>
-                          <div>
-                            <div className="text-sm font-medium text-gray-900">
+                          <div className="min-w-0 flex-1">
+                            <div className="text-sm font-medium text-gray-900 truncate">
                               {member.firstName} {member.lastName}
                             </div>
                             {member.bio && (
-                              <div className="text-sm text-gray-500 line-clamp-1">
+                              <div className="text-xs sm:text-sm text-gray-500 line-clamp-1 truncate">
                                 {member.bio}
                               </div>
                             )}
+                            <div className="text-xs text-gray-400 sm:hidden">
+                              {member.role} • {member.email || 'N/A'} • {member.phone || 'N/A'} • {member.isActive ? 'Active' : 'Inactive'}
+                            </div>
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap hidden sm:table-cell">
                         <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                           {member.role}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        <div>{member.email || 'N/A'}</div>
-                        <div className="text-gray-500">{member.phone || 'N/A'}</div>
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900 hidden md:table-cell">
+                        <div className="truncate">{member.email || 'N/A'}</div>
+                        <div className="text-gray-500 truncate">{member.phone || 'N/A'}</div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap hidden lg:table-cell">
                         <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                           member.isActive 
                             ? 'bg-green-100 text-green-800' 
@@ -715,23 +727,23 @@ export default function AdminPage() {
                           {member.isActive ? 'Active' : 'Inactive'}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <div className="flex space-x-2">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <div className="flex space-x-1 sm:space-x-2">
                           <button 
                             onClick={() => {
                               window.location.href = `/admin/edit-core-member/${member.id}`
                             }}
-                            className="text-yellow-600 hover:text-yellow-900"
+                            className="text-yellow-600 hover:text-yellow-900 p-1"
                             title="Edit Member"
                           >
-                            <Edit className="h-4 w-4" />
+                            <Edit className="h-3 w-3 sm:h-4 sm:w-4" />
                           </button>
                           <button 
                             onClick={() => handleDeleteCoreMember(member.id)}
-                            className="text-red-600 hover:text-red-900"
+                            className="text-red-600 hover:text-red-900 p-1"
                             title="Delete Member"
                           >
-                            <Trash2 className="h-4 w-4" />
+                            <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                           </button>
                         </div>
                       </td>

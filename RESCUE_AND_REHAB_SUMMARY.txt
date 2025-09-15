@@ -1,0 +1,59 @@
+🐾 RESCUE AND REHAB FOUNDATION - WEBSITE FEATURES
+
+✅ LIVE WEBSITE: http://34.236.151.99:3000
+✅ ADMIN PANEL: http://34.236.151.99:3000/admin
+✅ LOGIN: admin / admin123
+
+🔐 ADMIN FEATURES:
+• Add/Edit/Delete Animals (Dogs, Cows, Birds)
+• Create Events with Photo Galleries
+• Manage Volunteers & Core Members
+• Upload Images & Write Event Articles
+• View Contact Forms & Applications
+
+👥 USER FEATURES:
+• Browse Animals for Adoption
+• View Events & Photo Galleries
+• Apply to Volunteer
+• Contact Form
+• Online Donations (Razorpay)
+• Mobile-Friendly Design
+
+📱 RESPONSIVE:
+• Works on Mobile, Tablet, Desktop
+• Fast Loading & Modern Design
+• Easy Navigation
+
+💰 DONATION SYSTEM:
+• Secure Online Payments
+• Multiple Payment Options
+• Automatic Receipts
+
+📧 EMAIL NOTIFICATIONS:
+• Contact Form Alerts
+• Volunteer Application Notifications
+• Professional Email Templates
+
+🎯 BUSINESS BENEFITS:
+• Professional Website Presence
+• Streamlined Animal Management
+• Easy Volunteer Recruitment
+• Event Organization Tools
+• Secure Donation Processing
+• Community Engagement
+
+🚀 PRODUCTION READY:
+• Deployed on AWS EC2
+• PM2 Process Management
+• Database Integration
+• SSL Ready
+
+📞 SUPPORT:
+• Complete Documentation
+• Deployment Guide
+• Technical Support Available
+
+The website is fully functional and ready for use! All features are working including admin login, animal management, events, volunteers, and donations.
+
+Contact for any questions or customizations needed.
+
