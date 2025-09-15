@@ -155,7 +155,7 @@ export default function EventsPage() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {events.map((event) => (
                   <div key={event.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                     {event.imageURL && (
@@ -169,9 +169,9 @@ export default function EventsPage() {
                       </div>
                     )}
                     
-                    <div className="p-6">
+                    <div className="p-4 sm:p-6">
                       <div className="flex items-center mb-3">
-                        <div className={`px-3 py-1 rounded-full text-sm font-medium ${
+                        <div className={`px-2 py-1 rounded-full text-xs font-medium ${
                           isEventUpcoming(event.date)
                             ? 'bg-green-100 text-green-800'
                             : 'bg-gray-100 text-gray-800'
@@ -180,30 +180,33 @@ export default function EventsPage() {
                         </div>
                       </div>
                       
-                      <h3 className="text-xl font-bold text-gray-800 mb-3">
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-3 leading-tight">
                         {event.name}
                       </h3>
                       
-                      <p className="text-gray-600 mb-4 line-clamp-3">
-                        {event.description}
+                      <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                        {event.description.length > 120 
+                          ? `${event.description.substring(0, 120)}...` 
+                          : event.description
+                        }
                       </p>
                       
                       <div className="space-y-2 mb-4">
                         <div className="flex items-center text-gray-600">
-                          <Calendar className="h-4 w-4 mr-2" />
-                          <span className="text-sm">
+                          <Calendar className="h-4 w-4 mr-2 flex-shrink-0" />
+                          <span className="text-xs sm:text-sm">
                             {formatDate(event.date)}
                           </span>
                         </div>
                         <div className="flex items-center text-gray-600">
-                          <Clock className="h-4 w-4 mr-2" />
-                          <span className="text-sm">
+                          <Clock className="h-4 w-4 mr-2 flex-shrink-0" />
+                          <span className="text-xs sm:text-sm">
                             {formatTime(event.date)}
                           </span>
                         </div>
                         <div className="flex items-center text-gray-600">
-                          <MapPin className="h-4 w-4 mr-2" />
-                          <span className="text-sm">
+                          <MapPin className="h-4 w-4 mr-2 flex-shrink-0" />
+                          <span className="text-xs sm:text-sm">
                             {event.location}, {event.city.name}
                           </span>
                         </div>
@@ -211,7 +214,7 @@ export default function EventsPage() {
                       
                       <Link 
                         href={`/events/${event.id}`}
-                        className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition-colors inline-flex items-center justify-center"
+                        className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 sm:py-3 px-4 rounded-lg transition-colors inline-flex items-center justify-center text-sm sm:text-base"
                       >
                         Learn More
                         <ArrowRight className="h-4 w-4 ml-2" />

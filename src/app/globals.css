@@ -42,3 +42,30 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   letter-spacing: -0.05em;
 }
+
+/* Mobile responsiveness improvements */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Ensure text doesn't overflow on mobile */
+.break-words {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Better mobile spacing */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .text-responsive {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+}

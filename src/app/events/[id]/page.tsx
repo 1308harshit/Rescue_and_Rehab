@@ -137,21 +137,21 @@ export default function EventDetailPage() {
                 {event.eventType.replace('_', ' ')}
               </span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">{event.name}</h1>
-            <p className="text-xl text-white/90 max-w-3xl">{event.description}</p>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">{event.name}</h1>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-3xl leading-relaxed">{event.description}</p>
           </div>
         </div>
       </section>
 
       <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
             {/* Event Details */}
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h2 className="text-2xl font-bold text-gray-800 mb-6">Event Details</h2>
+            <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6">Event Details</h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
                 <div className="flex items-center">
                   <Calendar className="h-5 w-5 text-red-600 mr-3" />
                   <div>
@@ -170,25 +170,25 @@ export default function EventDetailPage() {
               </div>
 
               <div className="prose max-w-none">
-                <p className="text-gray-700 leading-relaxed whitespace-pre-line">{event.description}</p>
+                <p className="text-gray-700 leading-relaxed whitespace-pre-line text-sm sm:text-base">{event.description}</p>
               </div>
             </div>
 
             {/* Event Article/Report */}
             {event.article && (
-              <div className="bg-white rounded-lg shadow-lg p-6">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">Event Report</h2>
+              <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6">Event Report</h2>
                 <div className="prose max-w-none">
-                  <p className="text-gray-700 leading-relaxed whitespace-pre-line">{event.article}</p>
+                  <p className="text-gray-700 leading-relaxed whitespace-pre-line text-sm sm:text-base">{event.article}</p>
                 </div>
               </div>
             )}
 
             {/* Gallery Section */}
             {event.gallery && event.gallery.length > 0 && (
-              <div className="bg-white rounded-lg shadow-lg p-6">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">Event Gallery</h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6">Event Gallery</h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                   {event.gallery
                     .sort((a, b) => a.order - b.order)
                     .map((item) => (
@@ -223,8 +223,8 @@ export default function EventDetailPage() {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Event Info Card */}
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h3 className="text-xl font-bold text-gray-800 mb-4">Event Information</h3>
+            <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-4">Event Information</h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Type:</span>

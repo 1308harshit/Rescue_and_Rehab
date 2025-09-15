@@ -52,7 +52,7 @@ export default function EventsPreview({ events }: EventsPreviewProps) {
         </div>
 
         {events.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {events.map((event) => (
               <div key={event.id} className="bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 {event.imageURL && (
@@ -64,24 +64,27 @@ export default function EventsPreview({ events }: EventsPreviewProps) {
                     />
                   </div>
                 )}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-800 mb-3">
+                <div className="p-4 sm:p-6">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-3 leading-tight">
                     {event.name}
                   </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3">
-                    {event.description}
+                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                    {event.description.length > 100 
+                      ? `${event.description.substring(0, 100)}...` 
+                      : event.description
+                    }
                   </p>
                   
                   <div className="space-y-2 mb-4">
                     <div className="flex items-center text-gray-600">
-                      <Calendar className="h-4 w-4 mr-2" />
-                      <span className="text-sm">
+                      <Calendar className="h-4 w-4 mr-2 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm">
                         {formatDate(event.date)} at {formatTime(event.date)}
                       </span>
                     </div>
                     <div className="flex items-center text-gray-600">
-                      <MapPin className="h-4 w-4 mr-2" />
-                      <span className="text-sm">
+                      <MapPin className="h-4 w-4 mr-2 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm">
                         {event.location}, {event.city.name}
                       </span>
                     </div>
