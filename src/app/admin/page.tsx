@@ -65,6 +65,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true)
   const [editingAnimal, setEditingAnimal] = useState<Animal | null>(null)
   const [editingEvent, setEditingEvent] = useState<Event | null>(null)
+  const [viewingAnimal, setViewingAnimal] = useState<Animal | null>(null)
   const [animalFilter, setAnimalFilter] = useState<'ALL' | 'DOG' | 'COW' | 'BIRD'>('ALL')
   const [volunteerFilter, setVolunteerFilter] = useState<'ALL' | 'CORE' | 'REGULAR'>('ALL')
 
@@ -204,6 +205,15 @@ export default function AdminPage() {
         alert('Failed to delete core member')
       }
     }
+  }
+
+  const handleViewAnimal = (animal: Animal) => {
+    setViewingAnimal(animal)
+  }
+
+  const handleEditAnimal = (animal: Animal) => {
+    // Navigate to edit animal page
+    router.push(`/admin/edit-animal/${animal.id}`)
   }
 
   const handleLogout = async () => {
@@ -415,18 +425,24 @@ export default function AdminPage() {
                       </td>
                       <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <div className="flex space-x-1 sm:space-x-2">
-                          <button className="text-blue-600 hover:text-blue-900 p-1">
+                          <button 
+                            onClick={() => handleViewAnimal(animal)}
+                            className="text-blue-600 hover:text-blue-900 p-1"
+                            title="View Animal Details"
+                          >
                             <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
                           </button>
                           <button 
-                            onClick={() => setEditingAnimal(animal)}
+                            onClick={() => handleEditAnimal(animal)}
                             className="text-yellow-600 hover:text-yellow-900 p-1"
+                            title="Edit Animal"
                           >
                             <Edit className="h-3 w-3 sm:h-4 sm:w-4" />
                           </button>
                           <button 
                             onClick={() => handleDeleteAnimal(animal.id)}
-                            className="text-teal-600 hover:text-teal-900 p-1"
+                            className="text-red-600 hover:text-red-900 p-1"
+                            title="Delete Animal"
                           >
                             <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                           </button>
@@ -755,6 +771,116 @@ export default function AdminPage() {
           </div>
         )}
       </div>
+
+      {/* Animal View Modal */}
+      {viewingAnimal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-800">Animal Details</h2>
+                <button
+                  onClick={() => setViewingAnimal(null)}
+                  className="text-gray-400 hover:text-gray-600"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+
+              <div className="space-y-6">
+                {/* Animal Image */}
+                {viewingAnimal.imageURL.length > 0 && (
+                  <div className="flex justify-center">
+                    <img
+                      src={viewingAnimal.imageURL[0]}
+                      alt={viewingAnimal.name}
+                      className="h-48 w-48 object-cover rounded-lg border border-gray-300"
+                    />
+                  </div>
+                )}
+
+                {/* Animal Information */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                    <p className="text-gray-900 font-medium">{viewingAnimal.name}</p>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
+                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                      {viewingAnimal.type}
+                    </span>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Age</label>
+                    <p className="text-gray-900">{viewingAnimal.age ? `${viewingAnimal.age} years` : 'Unknown'}</p>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                      viewingAnimal.isAvailable 
+                        ? 'bg-green-100 text-green-800' 
+                        : 'bg-red-100 text-red-800'
+                    }`}>
+                      {viewingAnimal.isAvailable ? 'Available for Adoption' : 'Already Adopted'}
+                    </span>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                    <p className="text-gray-900">{viewingAnimal.shelter.city.name}</p>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Shelter</label>
+                    <p className="text-gray-900">{viewingAnimal.shelter.name}</p>
+                  </div>
+                </div>
+
+                {/* Story */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Story</label>
+                  <p className="text-gray-900 leading-relaxed whitespace-pre-line">{viewingAnimal.story}</p>
+                </div>
+
+                {/* Additional Images */}
+                {viewingAnimal.imageURL.length > 1 && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Additional Photos</label>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      {viewingAnimal.imageURL.slice(1).map((url, index) => (
+                        <img
+                          key={index}
+                          src={url}
+                          alt={`${viewingAnimal.name} ${index + 2}`}
+                          className="w-full h-24 object-cover rounded-lg border border-gray-300"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Action Buttons */}
+                <div className="flex justify-end space-x-4 pt-4 border-t">
+                  <button
+                    onClick={() => setViewingAnimal(null)}
+                    className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+                  >
+                    Close
+                  </button>
+                  <button
+                    onClick={() => {
+                      setViewingAnimal(null)
+                      handleEditAnimal(viewingAnimal)
+                    }}
+                    className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"
+                  >
+                    Edit Animal
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
