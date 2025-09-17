@@ -114,7 +114,7 @@ export default function AddEventPage() {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent placeholder-gray-900"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent placeholder-gray-900 text-black font-medium"
                   placeholder="Enter event name"
                 />
               </div>
@@ -126,7 +126,7 @@ export default function AddEventPage() {
                 <select
                   value={formData.eventType}
                   onChange={(e) => setFormData({ ...formData, eventType: e.target.value as any })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-gray-900"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-black font-medium"
                 >
                   <option value="GENERAL">General</option>
                   <option value="ADOPTION_DRIVE">Adoption Drive</option>
@@ -148,7 +148,7 @@ export default function AddEventPage() {
                   required
                   value={formData.date}
                   onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent placeholder-gray-900"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent placeholder-gray-900 text-black font-medium"
                 />
               </div>
 
@@ -159,7 +159,7 @@ export default function AddEventPage() {
                 <select
                   value={formData.cityId}
                   onChange={(e) => setFormData({ ...formData, cityId: parseInt(e.target.value) })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-gray-900"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-black font-medium"
                 >
                   {cities.map((city) => (
                     <option key={city.id} value={city.id}>
@@ -178,7 +178,7 @@ export default function AddEventPage() {
                   required
                   value={formData.location}
                   onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent placeholder-gray-900"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent placeholder-gray-900 text-black font-medium"
                   placeholder="Enter event location"
                 />
               </div>
@@ -192,7 +192,7 @@ export default function AddEventPage() {
                   rows={6}
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent resize-none placeholder-gray-900"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent resize-none placeholder-gray-900 text-black font-medium"
                   placeholder="Describe the event, what participants need to bring, contact information, requirements, etc."
                 />
                 <p className="text-sm text-gray-500 mt-2">

@@ -97,7 +97,7 @@ export default function AddAnimalPage() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent placeholder-gray-900"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent placeholder-gray-900 text-black font-medium"
                     placeholder="Animal's name"
                   />
                 </div>
@@ -109,7 +109,7 @@ export default function AddAnimalPage() {
                   <select
                     value={formData.type}
                     onChange={(e) => setFormData({ ...formData, type: e.target.value as 'DOG' | 'COW' | 'BIRD' })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent text-gray-900"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent text-black font-medium"
                   >
                     <option value="DOG">Dog</option>
                     <option value="COW">Cow</option>
@@ -127,7 +127,7 @@ export default function AddAnimalPage() {
                     max="30"
                     value={formData.age}
                     onChange={(e) => setFormData({ ...formData, age: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent placeholder-gray-900"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent placeholder-gray-900 text-black font-medium"
                     placeholder="Age in years"
                   />
                 </div>
@@ -139,7 +139,7 @@ export default function AddAnimalPage() {
                   <select
                     value={formData.isAvailable ? 'available' : 'adopted'}
                     onChange={(e) => setFormData({ ...formData, isAvailable: e.target.value === 'available' })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent text-gray-900"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent text-black font-medium"
                   >
                     <option value="available">Available for Adoption</option>
                     <option value="adopted">Already Adopted</option>
@@ -156,7 +156,7 @@ export default function AddAnimalPage() {
                   rows={4}
                   value={formData.story}
                   onChange={(e) => setFormData({ ...formData, story: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent placeholder-gray-900"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent placeholder-gray-900 text-black font-medium"
                   placeholder="Tell the animal's rescue story..."
                 />
               </div>

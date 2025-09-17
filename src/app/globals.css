@@ -69,3 +69,56 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.5;
   }
 }
+
+/* Force all input text to be black and visible */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="time"],
+input[type="search"],
+textarea,
+select {
+  color: #000000 !important;
+  font-weight: 500 !important;
+}
+
+/* Placeholder text should be darker grey */
+input::placeholder,
+textarea::placeholder {
+  color: #374151 !important;
+  opacity: 1 !important;
+}
+
+/* Select dropdown text */
+select option {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+}
+
+/* Focus states */
+input:focus,
+textarea:focus,
+select:focus {
+  color: #000000 !important;
+  border-color: #dc2626 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important;
+}
+
+/* Ensure all form elements have proper contrast */
+.form-input {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  border: 1px solid #d1d5db !important;
+}
+
+.form-input:focus {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  border-color: #dc2626 !important;
+}
